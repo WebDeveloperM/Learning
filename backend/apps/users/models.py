@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from main.models import BaseModel
 
 
 class User(AbstractUser):
@@ -26,7 +25,7 @@ class User(AbstractUser):
         return f'{self.type}, {self.phone}'
 
 
-class SmsCode(BaseModel):
+class SmsCode(models.Model):
     dispatch_id = models.CharField(max_length=8)
     code = models.CharField(max_length=4)
 
