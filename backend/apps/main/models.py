@@ -10,6 +10,7 @@ from apps.main.querysets.student import StudentQuerySet
 class Science(models.Model):
     title = models.CharField(max_length=200)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="science_user")
+    photo = models.FileField(upload_to="sciences", null=True)
 
     def __str__(self):
         return self.title
@@ -17,9 +18,8 @@ class Science(models.Model):
 
 class Lesson(models.Model):
     science = models.ForeignKey(Science, on_delete=models.CASCADE, related_name='lesson_science')
-    started_date = models.DateField(null=True)
-    started_time = models.TimeField(null=True)
-    finished_date = models.DateTimeField()
+    started_datetime = models.DateTimeField(null=True)
+    finished_datetime = models.DateTimeField(null=True)
     group = models.ForeignKey("Group", on_delete=models.CASCADE, related_name="lesson_group")
 
     def __str__(self):
