@@ -17,7 +17,6 @@ import sys
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -25,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c32ber6bugm6ckdhbndr9x)1&&!59ka%clqy-28i(pig0-cnf3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -34,9 +33,8 @@ sys.path.append(os.path.join(BASE_DIR, 'apps'))
 # Application definition
 AUTH_USER_MODEL = 'users.User'
 
-
 INSTALLED_APPS = [
-    'jazzmin', 
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    
+
     'main',
     'users'
 ]
@@ -94,22 +92,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'postgres'),
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', 5432),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join("db.sqlite3"),
+        # 'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        # 'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
+        # 'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        # 'PORT': os.environ.get('POSTGRES_PORT', 5432),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -129,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -141,7 +135,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -151,9 +144,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'files/static')
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files/uploads')
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
@@ -161,14 +155,12 @@ REST_FRAMEWORK = {
     ]
 }
 
-
-
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:8000',
-    'http://localhost:3000'
+    'http://localhost:3000',
 )
 
-CORS_ALLOW_ALL_ORIGINS =True
+# CORS_ALLOW_ALL_ORIGINS =True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
