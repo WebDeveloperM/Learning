@@ -24,13 +24,13 @@ class AuthorMixin:
 
 @admin.register(Science)
 class ScienceAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('title', 'teacher')
-    fields = ('title', 'teacher')
+    list_display = ('title', 'teacher', 'photo')
+    fields = ('title', 'teacher', 'photo')
 
 
 @admin.register(Lesson)
 class LessonAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('science', 'started_date', 'finished_date', 'group')
+    list_display = ('science', 'started_datetime', 'finished_datetime', 'group')
     fields = ('science', 'started_date', 'finished_date', 'group')
 
 
