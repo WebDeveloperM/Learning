@@ -9,7 +9,7 @@ from main.serializers.question import QuestionSerializer
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model =Answer
-        fields = ('id', 'control', 'question', 'option', 'correct')
+        fields = ('id', 'question', 'option', 'correct')
 
     def to_representation(self, instance):
         control = Control.objects.filter(id=instance.id)

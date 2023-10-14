@@ -66,7 +66,7 @@ class ControlAdmin(AuthorMixin, admin.ModelAdmin):
 
 @admin.register(Answer)
 class AnswerAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('control', 'question', 'option', 'correct')
-    fields = ('control', 'question', 'option', 'correct')
+    list_display = ('question', 'option', 'correct', 'student')
+    fields = ('question', 'option', 'correct', 'student')
 
 
