@@ -11,3 +11,7 @@ class LessonApiView(APIView):
     def get(self, request):
         lessons = Lesson.objects.all()
         return Response(LessonSerializer(lessons, many=True).data)
+    
+    def post(self, request):
+        lessons = Lesson.objects.filter(started_date = request.data.get('started_date'))
+        return Response(LessonSerializer(lessons, many=True).data)
