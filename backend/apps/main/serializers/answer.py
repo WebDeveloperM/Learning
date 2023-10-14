@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from main.models import Control, Option, Answer, Question
+from main.models import Control, Answer, Option, Question
 from main.serializers.control import ControlSerializer
 from main.serializers.option import OptionSerializer
 from main.serializers.question import QuestionSerializer
@@ -9,7 +9,8 @@ from main.serializers.question import QuestionSerializer
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model =Answer
-        fields = ('id', 'question', 'option', 'correct')
+        fields = ('id', 'student', 'question', 'option','correct', 'response_time' )
+
 
     def to_representation(self, instance):
         control = Control.objects.filter(id=instance.id)

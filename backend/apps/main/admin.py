@@ -7,7 +7,10 @@ from main.models import (
                     Question,
                     Option,
                     Control,
-                    Answer
+                    Answer,
+                    SpecialAnswer,
+                    SpecialOption,
+                    SpecialQuestion
                 )
 # Register your models here.
 
@@ -70,3 +73,19 @@ class AnswerAdmin(AuthorMixin, admin.ModelAdmin):
     fields = ('question', 'option', 'correct', 'student')
 
 
+@admin.register(SpecialAnswer)
+class SpAnswerAdmin(AuthorMixin, admin.ModelAdmin):
+    list_display = ('student', 'question', 'option', 'correct', 'response_time', 'time_delta' )
+    fields = ( 'student', 'question', 'option', 'correct', 'response_time', 'time_delta')
+
+
+@admin.register(SpecialQuestion)
+class QuestionAdmin(AuthorMixin, admin.ModelAdmin):
+    list_display = ('text', 'science', 'question_time', 'level')
+    fields = ('text', 'science', 'question_time', 'level')
+
+
+@admin.register(SpecialOption)
+class OptionAdmin(AuthorMixin, admin.ModelAdmin):
+    list_display = ('text', 'question', 'correct')
+    fields = ('text', 'question', 'correct')
