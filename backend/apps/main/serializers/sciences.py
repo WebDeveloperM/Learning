@@ -8,7 +8,7 @@ from users.serializers.sign_in import UserSerializer
 class ScienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Science
-        fields = ('id', 'title', 'teacher')
+        fields = ('id', 'title', 'teacher', 'photo')
 
     def to_representation(self, instance):
         users = User.objects.filter(id=instance.id)

@@ -27,9 +27,7 @@ class AnswerApiView(APIView):
             _student = Student.objects.filter(id=student_id).first()
             _option = Option.objects.filter(id=option_id).first()
             _right_option = Option.objects.filter(Q(question__id = question_id) & Q(correct = True) ).first()
-            if _question or _student or _option or _right_option:
-                return Response({"message": "Data not found"})
-
+            
             if _option.correct == _right_option.correct:
                 right_answer = Answer.objects.create(
                     student=_student,
