@@ -45,7 +45,7 @@ class Student(models.Model):
 
 class Question(models.Model):
     text = models.TextField()
-    science = models.ForeignKey(Science, on_delete=models.CASCADE)
+    science = models.ForeignKey(Science, on_delete=models.CASCADE, related_name="science")
     question_time = models.TimeField(null=True)
 
     def __str__(self):

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from main.models import Control, Option, Answer, Question
 from main.serializers.control import ControlSerializer
-from main.serializers.option import OptioneSerializer
+from main.serializers.option import OptionSerializer
 from main.serializers.question import QuestionSerializer
 
 
