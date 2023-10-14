@@ -8,7 +8,7 @@ from main.serializers.sciences import ScienceSerializer
 class ControlSerializer(serializers.ModelSerializer):
     class Meta:
         model =Control
-        fields = ('id', 'student', 'control')
+        fields = ('id', 'student', 'science')
 
     def to_representation(self, instance):
         student = Student.objects.filter(id=instance.id)

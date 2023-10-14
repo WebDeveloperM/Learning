@@ -6,6 +6,7 @@ from main.serializers.option import OptioneSerializer
 
 
 class OptionApiView(APIView):
+    permission_classes = (AllowAny,) 
 
     def get(self, request):
         options = Option.objects.all()

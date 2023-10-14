@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from main.models import Student, Science
+from main.models import Question, Science
 from main.serializers.sciences import ScienceSerializer
 
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
+        model = Question
         fields = ('id', 'text', 'science')
 
     def to_representation(self, instance):

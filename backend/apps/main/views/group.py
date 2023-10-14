@@ -6,6 +6,7 @@ from main.serializers.group import GroupSerializer
 
 
 class GroupApiView(APIView):
+    permission_classes = (AllowAny,) 
 
     def get(self, request):
         groups = Group.objects.all()

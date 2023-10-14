@@ -27,10 +27,7 @@ SECRET_KEY = 'django-insecure-c32ber6bugm6ckdhbndr9x)1&&!59ka%clqy-28i(pig0-cnf3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1"
-]
+ALLOWED_HOSTS = ['*']
 
 sys.path.append(os.path.join(BASE_DIR, 'apps'))
 
@@ -49,6 +46,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     
     'main',
     'users'
@@ -62,14 +60,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'users.utils.authentication.CustomTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
@@ -152,7 +153,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'files/uploads')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -162,9 +164,11 @@ REST_FRAMEWORK = {
 
 
 CORS_ORIGIN_WHITELIST = (
-    'http://127.0.0.1',
+    'http://127.0.0.1:8000',
     'http://localhost:3000'
 )
+
+CORS_ALLOW_ALL_ORIGINS =True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

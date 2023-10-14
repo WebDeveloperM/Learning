@@ -6,6 +6,7 @@ from main.serializers.lessons import LessonSerializer
 
 
 class LessonApiView(APIView):
+    permission_classes = (AllowAny,) 
 
     def get(self, request):
         lessons = Lesson.objects.all()

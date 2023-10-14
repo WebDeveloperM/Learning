@@ -6,6 +6,7 @@ from main.serializers.student import StudentSerializer
 
 
 class StudentApiView(APIView):
+    permission_classes = (AllowAny,) 
 
     def get(self, request):
         students = Student.objects.all()

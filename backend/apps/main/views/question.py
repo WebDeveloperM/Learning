@@ -6,6 +6,7 @@ from main.serializers.question import QuestionSerializer
 
 
 class QuestionApiView(APIView):
+    permission_classes = (AllowAny,) 
 
     def get(self, request):
         questions = Question.objects.all()

@@ -6,6 +6,7 @@ from main.serializers.control import ControlSerializer
 
 
 class ControlApiView(APIView):
+    permission_classes = (AllowAny,) 
 
     def get(self, request):
         controls = Control.objects.all()

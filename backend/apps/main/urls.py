@@ -12,7 +12,6 @@ urlpatterns = [
     path("science/", ScienceApiView.as_view()),
     path("student/", StudentApiView.as_view()),
     path("group/", GroupApiView.as_view()),
-    path("student/", StudentApiView.as_view()),
     path("lessons/", LessonApiView.as_view()),
     path("question/", QuestionApiView.as_view()),
     path("option/", OptionApiView.as_view()),

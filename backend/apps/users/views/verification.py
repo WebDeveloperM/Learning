@@ -3,7 +3,7 @@ from rest_framework.permissions import AllowAny
 from users.models import User, SmsCode
 from rest_framework.exceptions import ParseError
 from rest_framework.views import APIView
-from rest_framework.authtoken.models import Token
+from users.models import Token
 
 
 class VerificationView(APIView):
