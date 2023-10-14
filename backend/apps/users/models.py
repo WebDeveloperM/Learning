@@ -1,20 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from users.utils.fields import expires_default
+from users.utils import tokens
 
 
 class User(AbstractUser):
-    INVESTOR = 'investor'
-    FARMER = 'farmer'
+    TEACHER = 'teacher'
+    STUDENT = 'student'
+    DIRECTOR = 'director'
 
     TYPES = (
-        (INVESTOR, 'Investor'),
-        (FARMER, 'Farmer')
+        (TEACHER, 'Teacher'),
+        (STUDENT, 'Student'),
+        (DIRECTOR, 'Director')
     )
-    REQUIRED_FIELDS = ['phone', 'email', 'region']
+    REQUIRED_FIELDS = ['phone', 'email']
 
     phone = models.CharField(max_length=15, unique=True)
-    type = models.CharField(max_length=50, choices=TYPES, default=FARMER)
-    region = models.CharField(max_length=250)
+    type = models.CharField(max_length=50, choices=TYPES)
     dispatch_id = models.TextField(null=True, blank=True)
 
     class Meta(AbstractUser.Meta):
@@ -33,6 +36,22 @@ class SmsCode(models.Model):
         return self.code
 
     class Meta:
-        db_table = 'main_sms_code'
+        db_table = 'sms_code'
 
 
+class Token(models.Model):
+    key = models.CharField(max_length=40, unique=True)
+    is_active = models.BooleanField(default=True)
+    user = models.ForeignKey(User, models.CASCADE, related_name='tokens')
+    expires_at = models.DateTimeField(default=expires_default)  # token expires in 30 days
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = tokens.generate()
+        return super(Token, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.key
+
+    class Meta:
+        db_table = 'user_tokens'

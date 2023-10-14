@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include([
         path('users/', include(('users.urls', 'apps.users'), namespace='users')),
+        path('main/', include(('main.urls', 'apps.main'), namespace='main')),
        
     ])),
 ]
