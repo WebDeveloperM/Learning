@@ -11,6 +11,5 @@ class ScienceApiView(APIView):
     
 
     def get(self, request):
-        print(request)
         sciences = Science.objects.all()
         return Response(ScienceSerializer(sciences, many=True).data)
