@@ -19,7 +19,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
         ret = super().to_representation(instance)
         ret["control"] = ControlSerializer(control, many=True).data
-        ret["question"] = QuestionSerializer(question, many=True).data
         ret["option"] = OptionSerializer(option, many=True).data
         return ret
     
