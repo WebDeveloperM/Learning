@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Statistics(props) {
+function Layout(props) {
     return (
         <div></div>
     );
 }
 
-export default Statistics;
+export default Layout;

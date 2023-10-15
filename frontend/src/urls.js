@@ -1,6 +1,7 @@
-export const BASE_API = "https://3fff-84-54-83-231.ngrok.io/api/v1"
+export const BASE_API = "http://localhost:8000/api/v1"
+export const MAIN = "/main"
+export const USERS = "/users"
 
-// add urls
-
-
-export const LOGIN = "/sign_in"
+export const SIGN_IN = "/sign_in/"
+export const LESSONS = "/lessons/"
+export const SCIENCE = "/science/"

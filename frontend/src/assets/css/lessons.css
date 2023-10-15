@@ -1,0 +1,28 @@
+.lessons {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 30px;
+}
+
+.lesson-item {
+    width: 30%;
+    height: 230px;
+    border: 2px solid #F87C43;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lesson-item img {
+    width: 180px;
+    height: 180px;
+}
+
+.lesson-item h1 {
+    font-size: 20px;
+}

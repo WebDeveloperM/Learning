@@ -1,0 +1,77 @@
+@font-face {
+    font-family: namu, 'sans-serif';
+    src: url("../fonts/namu/NAMU-1850.ttf");
+    font-weight: 700;
+}
+
+:root {
+    --main-bg-color-pur: #696DF2;
+    --main-bg-color-or: #F87C43;
+}
+
+* {
+    font-family: namu, serif;
+    padding: 0;
+    margin: 0;
+}
+
+.welcome {
+    width: auto;
+    height: 100vh;
+    display: flex;
+}
+
+.welcome-left {
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-bg-color-pur);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-right {
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-bg-color-or);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-left button, .welcome-right button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    font-size: 25px;
+}
+
+
+.welcome-left button:hover, .welcome-right button:hover {
+    background-color: white;
+    color: black;
+}
+
+.welcome-form {
+    width: 40%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input {
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+    outline: none;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    cursor: pointer;
+}
