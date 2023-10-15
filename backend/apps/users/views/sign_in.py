@@ -19,7 +19,6 @@ class SignInView(APIView):
         if len(phone) != 13:
             raise ParseError('This phone number is incorrect!', 400)
 
-        res = send_code(request.data['phone'])
         user, created = User.objects.update_or_create(
             phone=phone,
             defaults={
@@ -27,7 +26,6 @@ class SignInView(APIView):
                 'password': password,
                 'username': phone,
                 'type': type,
-                'dispatch_id': res['dispatch_id']
             }
         )
        

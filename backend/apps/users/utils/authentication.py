@@ -4,7 +4,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 
 from users.models import Token
-from users.serializers.users import UserSerializer
+from users.serializers.sign_in import UserSerializer
 
 
 class CustomTokenAuthentication(TokenAuthentication):

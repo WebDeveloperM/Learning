@@ -10,7 +10,7 @@ from apps.main.querysets.student import StudentQuerySet
 class Science(models.Model):
     title = models.CharField(max_length=200)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="science_user")
-    photo = models.FileField(upload_to="sciences", null=True)
+    photo = models.FileField(null=True)
 
     def __str__(self):
         return self.title
@@ -42,11 +42,20 @@ class Student(models.Model):
     def __str__(self):
         return self.user.email
 
+EASY = 'easy'
+MEDIUM = 'medium'
+HARD = 'hard'
 
 class Question(models.Model):
+    LEVELS = (
+        (EASY, 'Easy'),
+        (MEDIUM, 'Medium'),
+        (HARD, 'Hard')
+    )
     text = models.TextField()
     science = models.ForeignKey(Science, on_delete=models.CASCADE, related_name="question_science")
     question_time = models.TimeField(null=True)
+    level = models.CharField(max_length=50, choices=LEVELS, null=True)
 
     def __str__(self):
         return self.text
@@ -75,46 +84,8 @@ class Answer(models.Model):
     option = models.ForeignKey(Option, on_delete=models.CASCADE, related_name='answer_option')
     correct = models.BooleanField(default=False)
     response_time = models.TimeField(null=True)
-
-    def __str__(self):
-        return self.question.text
-
-
-class SpecialQuestion(models.Model):
-    EASY = 'easy'
-    MEDIUM = 'medium'
-    HARD = 'hard'
-
-    LEVELS = (
-        (EASY, 'Easy'),
-        (MEDIUM, 'Medium'),
-        (HARD, 'Hard')
-    )
-    text = models.TextField()
-    science = models.ForeignKey(Science, on_delete=models.CASCADE, related_name="special_question_science")
-    question_time = models.TimeField(null=True)
-    level = models.CharField(max_length=50, choices=LEVELS)
-
-    def __str__(self):
-        return self.text
-    
-
-class SpecialOption(models.Model):
-    text = models.TextField()
-    question = models.ForeignKey(SpecialQuestion, on_delete=models.CASCADE, related_name='special_option_question')
-    correct = models.BooleanField(Question, default=False)
-
-    def __str__(self):
-        return self.text
-
-
-class SpecialAnswer(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, related_name='special_answer_student')
-    question = models.ForeignKey(SpecialQuestion, on_delete=models.CASCADE, related_name='special_answer_question')
-    option = models.ForeignKey(SpecialQuestion, on_delete=models.CASCADE, related_name='special_answer_option')
-    correct = models.BooleanField(default=False)
-    response_time = models.TimeField(null=True)
     time_delta = models.CharField(max_length=20)
 
     def __str__(self):
         return self.question.text
+

@@ -15,10 +15,8 @@ class User(AbstractUser):
         (DIRECTOR, 'Director')
     )
     REQUIRED_FIELDS = ['phone', 'email']
-
-    phone = models.CharField(max_length=15, unique=True)
+    
     type = models.CharField(max_length=50, choices=TYPES)
-    dispatch_id = models.TextField(null=True, blank=True)
 
     class Meta(AbstractUser.Meta):
         db_table = 'users_user'

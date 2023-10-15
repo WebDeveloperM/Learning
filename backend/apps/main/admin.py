@@ -7,10 +7,7 @@ from main.models import (
                     Question,
                     Option,
                     Control,
-                    Answer,
-                    SpecialAnswer,
-                    SpecialOption,
-                    SpecialQuestion
+                    Answer
                 )
 # Register your models here.
 
@@ -34,7 +31,7 @@ class ScienceAdmin(AuthorMixin, admin.ModelAdmin):
 @admin.register(Lesson)
 class LessonAdmin(AuthorMixin, admin.ModelAdmin):
     list_display = ('science', 'started_datetime', 'finished_datetime', 'group')
-    fields = ('science', 'started_date', 'finished_date', 'group')
+    fields = ('science', 'started_datetime', 'finished_datetime', 'group')
 
 
 @admin.register(Group)
@@ -51,8 +48,8 @@ class Student(AuthorMixin, admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('text', 'science')
-    fields = ('text', 'science')
+    list_display = ('text', 'science', 'level', 'question_time')
+    fields = ('text', 'science', 'level', 'question_time')
 
 
 @admin.register(Option)
@@ -72,20 +69,3 @@ class AnswerAdmin(AuthorMixin, admin.ModelAdmin):
     list_display = ('question', 'option', 'correct', 'student')
     fields = ('question', 'option', 'correct', 'student')
 
-
-@admin.register(SpecialAnswer)
-class SpAnswerAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('student', 'question', 'option', 'correct', 'response_time', 'time_delta' )
-    fields = ( 'student', 'question', 'option', 'correct', 'response_time', 'time_delta')
-
-
-@admin.register(SpecialQuestion)
-class QuestionAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('text', 'science', 'question_time', 'level')
-    fields = ('text', 'science', 'question_time', 'level')
-
-
-@admin.register(SpecialOption)
-class OptionAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('text', 'question', 'correct')
-    fields = ('text', 'question', 'correct')
