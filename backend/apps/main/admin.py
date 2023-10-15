@@ -31,7 +31,7 @@ class ScienceAdmin(AuthorMixin, admin.ModelAdmin):
 @admin.register(Lesson)
 class LessonAdmin(AuthorMixin, admin.ModelAdmin):
     list_display = ('science', 'started_datetime', 'finished_datetime', 'group')
-    fields = ('science', 'started_date', 'finished_date', 'group')
+    fields = ('science', 'started_datetime', 'finished_datetime', 'group')
 
 
 @admin.register(Group)
@@ -48,8 +48,8 @@ class Student(AuthorMixin, admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(AuthorMixin, admin.ModelAdmin):
-    list_display = ('text', 'science')
-    fields = ('text', 'science')
+    list_display = ('text', 'science', 'level', 'question_time')
+    fields = ('text', 'science', 'level', 'question_time')
 
 
 @admin.register(Option)
@@ -68,5 +68,4 @@ class ControlAdmin(AuthorMixin, admin.ModelAdmin):
 class AnswerAdmin(AuthorMixin, admin.ModelAdmin):
     list_display = ('question', 'option', 'correct', 'student')
     fields = ('question', 'option', 'correct', 'student')
-
 

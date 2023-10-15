@@ -7,12 +7,10 @@ from main.serializers.option import OptionSerializer
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'text', 'science')
+        fields = ('id', 'text', 'science', 'level')
 
     def to_representation(self, instance):
-        science = Science.objects.filter(science__id=instance.id)
         options = Option.objects.filter(question__id = instance.id)
         ret = super().to_representation(instance)
-        ret["science"] = ScienceSerializer(science, many=True).data
         ret["option"] = OptionSerializer(options, many=True).data
         return ret

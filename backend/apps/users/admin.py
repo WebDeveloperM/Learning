@@ -10,8 +10,8 @@ from main.admin import AuthorMixin
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['phone']
-    fields = ('phone', 'type', 'password', 'dispatch_id')
+    list_display = ['type']
+    fields = ['type']
 
 
 @admin.register(SmsCode)
